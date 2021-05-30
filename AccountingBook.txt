@@ -1,0 +1,16 @@
+No.   Category  Item          Amount
+------------------------------------
+  1 | food      a                 10
+  2 | meal      c                 30
+  3 | snack     d                 40
+  4 | bus       aa                10
+  5 | game      lol              100
+  6 | game      amongus           80
+  7 | pet       hua              100
+  8 | pet       mamo             999
+  9 | bill      ele              100
+ 10 | income    e                100
+ 11 | bonus     b                900
+ 12 | salary    s                 90
+------------------------------------
+Balance: 3559
