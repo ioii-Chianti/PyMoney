@@ -11,8 +11,8 @@ class Categories:
             catalog(self),
             View(self, data, level=-1),
             Subcategories(self, toFind),
-            isValidCategory(self, Cate, toCheck),
-            __Flatten(self, data)
+                SubcategoriesGen(recData, toFind, found=False)
+            isValidCategory(self, toCheck),
     '''
     def __init__(self):
         '''  constructor: setting the list structure of categories. '''
@@ -32,10 +32,12 @@ class Categories:
         ''' Recursively print out all categories with indentations
             
             Parameters:
-                TODO 完成 doc
+                recData : list/str
+                level : int
+                    Decide how many space to print
         '''
         if type(recData) == str:
-            print(f"{'   ' * level}{'-' if level % 2 else '+'} {recData}")
+            print(f"{'   ' * level}- {recData}")
         else:
             for element in recData:
                 self.View(element, level + 1)
@@ -43,34 +45,19 @@ class Categories:
     def Subcategories(self, toFind):
         ''' Find a non-nested list containing the specified category and all the subcategories under it (if any). '''
         def SubcategoriesGen(recData, toFind, found=False):
+            # when the list is end, then do nothing
             if type(recData) == list:
                 for i, data in enumerate(recData):
                     yield from SubcategoriesGen(data, toFind, found)
                     if data == toFind and i + 1 < len(recData) and type(recData[i + 1]) == list:
+                        # the list containing toFind's subcategories
                         yield from SubcategoriesGen(recData[i + 1], toFind, True)
-            else:
-                if recData == toFind or found:
-                    yield recData
+            # return toFind or toFind's sub
+            elif recData == toFind or found:
+                yield recData
+           
         return [sub for sub in SubcategoriesGen(self.catalog, toFind)]
 
-    def isValidCategory(self, Cate, toCheck):
+    def isValidCategory(self, toCheck):
+        ''' Check if toCheck exists in catalog '''
         return toCheck in self.Subcategories(toCheck)
-
-    def __Flatten(self, recData):
-        ''' return a flat list that contains all element in the nested list recData
-            for example, flatten([1, 2, [3, [4], 5]]) returns [1, 2, 3, 4, 5]
-            
-            Parameters:
-                recData : list
-                    The nested list.
-            Returns:
-                retList : list
-                    A flat list.
-        '''
-        if type(recData) == list:
-            retList = []
-            for element in recData:
-                retList.extend(self.__Flatten(element))
-            return retList   # final return
-        else:   # base case, recData is a str
-            return [recData]   # use [recData] instead of recData since the extend method needs list type 

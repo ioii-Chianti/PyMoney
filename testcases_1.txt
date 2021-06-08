@@ -1,1 +1,0 @@
-food a 10, meal b 20, meal c 30, snack d 40, bus aa 10, game lol 100, game amongus 80, pet hua 100, pet mamo 999, bill ele 100, income e 100, bonus b 900, salary s 90
