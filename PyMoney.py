@@ -1,8 +1,6 @@
 import sys
-
 from Class.PyCategory import *
 from Class.PyRecord import *
-
 
 
 categories = Categories()

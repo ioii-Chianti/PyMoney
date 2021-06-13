@@ -90,8 +90,9 @@ class Records:
                 except Exception as errmsg:   # catch any kind of errors
                     sys.stderr.write(f'# INITERROR: {str(errmsg)} #\n')
             print(f'Welcome back <3 You have {self.__wallet} dollars..')
+            fh.close()
     
-    @property
+    @property   # along with Record's __repr__
     def container(self):
         # a list contains Record objects
         ret = [record for record in self.__container]
