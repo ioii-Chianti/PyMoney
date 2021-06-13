@@ -115,8 +115,8 @@ class Records:
                 assert len(data) in {3, 4}, "Multiple data should be separated by ', ' and no spaces in descripton"
                 newDate = date.today() if len(data) == 3 else date.fromisoformat(data[0])
                 if len(data) == 4:
-                    del data[0]
-                curT = newDate.strftime('%Y-%m-%d')
+                    del data[0]   # delete date for unitifying format
+                curT = newDate.strftime('%Y-%m-%d')   # convert 'date' type to 'str' type
                 curC, curD, curA = data[0], data[1], int(data[2])
                 assert categories.isValidCategory(curC), f'{curC} is not a category'
                 assert len(curD) < 16, 'Description should be less than 16 characters'
